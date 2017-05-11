@@ -33,7 +33,12 @@
     [NSKeyedArchiver archiveRootObject:self toFile:ArchiverPath];
 }
 
-//解档
+//不需要进行归解档的属性
+- (NSArray *)ignoredNames {
+    return @[@"_one",@"_tow",@"_three"];
+}
+
+////解档
 //- (instancetype)initWithCoder:(NSCoder *)aDecoder {
 //    if (self = [super init]) {
 //        unsigned int varCount = 0;
@@ -42,6 +47,10 @@
 //            Ivar var = vars[i];
 //            const char *varName = ivar_getName(var);
 //            NSString *key = [NSString stringWithUTF8String:varName];
+//            // 忽略不需要解档的属性
+//            if ([[self ignoredNames] containsObject:key]) {
+//                continue;
+//            }
 //            id value = [aDecoder decodeObjectForKey:key];
 //            [self setValue:value forKey:key];
 //        }
@@ -58,6 +67,10 @@
 //        Ivar var = vars[i];
 //        const char *varName = ivar_getName(var);
 //        NSString *key = [NSString stringWithUTF8String:varName];
+//        // 忽略不需要归档的属性
+//        if ([[self ignoredNames] containsObject:key]) {
+//            continue;
+//        }
 //        id value = [self valueForKey:key];
 //        [aCoder encodeObject:value forKey:key];
 //    }

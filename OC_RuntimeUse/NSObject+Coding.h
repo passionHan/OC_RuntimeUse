@@ -10,6 +10,8 @@
 
 @interface NSObject (Coding)
 
+- (NSArray *)ignoredNames;
+
 - (void)decode:(NSCoder *)decoder;
 
 - (void)encode:(NSCoder *)encoder;

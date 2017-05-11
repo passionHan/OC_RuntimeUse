@@ -14,6 +14,8 @@
 
 - (void)save;
 
+- (NSArray *)ignoredNames;
+
 @property (nonatomic, copy) NSString *name;
 
 

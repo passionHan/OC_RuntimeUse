@@ -18,7 +18,10 @@
         Ivar var = vars[i];
         const char *varName = ivar_getName(var);
         NSString *key = [NSString stringWithUTF8String:varName];
-        
+        // 忽略不需要解档的属性
+        if ([[self ignoredNames] containsObject:key]) {
+            continue;
+        }
         id value = [self valueForKey:key];
         [encoder encodeObject:value forKey:key];
     }
@@ -33,7 +36,10 @@
         Ivar var = vars[i];
         const char *varName = ivar_getName(var);
         NSString *key = [NSString stringWithUTF8String:varName];
-        
+        // 忽略不需要解档的属性
+        if ([[self ignoredNames] containsObject:key]) {
+            continue;
+        }
         id value = [decoder decodeObjectForKey:key];
         [self setValue:value forKey:key];
     }
